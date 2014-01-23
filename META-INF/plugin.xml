@@ -1,0 +1,38 @@
+<idea-plugin version="2">
+  <id>org.ollide.java2smali</id>
+  <name>java2smali</name>
+  <version>1.0</version>
+  <vendor email="hg.otothel@gmail.com" url="https://github.com/ollide">ollide</vendor>
+
+  <description><![CDATA[
+      Simple plugin to easily compile a Java file to smali.
+      ]]></description>
+
+  <change-notes><![CDATA[
+      <b>version 1.0</b><br>
+      initial release
+      ]]>
+  </change-notes>
+
+  <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
+  <idea-version since-build="123.72"/>
+
+  <application-components>
+    <!-- Add your application components here -->
+  </application-components>
+
+  <project-components>
+    <!-- Add your project components here -->
+  </project-components>
+
+  <actions>
+      <action id="generateSmaliCode" class="org.ollide.java2smali.GenerateAction" text="Compile to smali"
+              description="Creates and shows a smali version of this Java file">
+          <add-to-group group-id="BuildMenu" anchor="after" relative-to-action="Compile"/>
+      </action>
+  </actions>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
+</idea-plugin>
