@@ -16,6 +16,7 @@
 
   <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
   <idea-version since-build="123.72"/>
+  <depends>com.intellij.modules.java</depends>
 
   <application-components>
     <!-- Add your application components here -->
