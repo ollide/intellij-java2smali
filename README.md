@@ -14,6 +14,10 @@ Have you ever compiled and packaged a dummy Android application just to grab som
 
 ![java2smali usage gif](img/plugin_usage.gif)
 
+### Installation ###
+
+java2smali is available at [JetBrains Plugin Repository](https://plugins.jetbrains.com/plugin/7385) and can therefore be found in your IDE's plugin manager! Alternatively, you can download the plugin from the release section.
+
 ### Third-Party Libraries &amp; Credits ###
 
 - dx from the Android platform-tools is used to create a .dex version of the compiled Java (.class) file
