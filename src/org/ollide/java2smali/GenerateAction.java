@@ -37,7 +37,7 @@ public class GenerateAction extends AnAction {
         Module module = ProjectRootManager.getInstance(p).getFileIndex().getModuleForFile(javaFile.getVirtualFile());
 
         // Compile the javaFile's module
-        CompilerCallback compilerCallback = new CompilerCallback(javaFile);
+        CompilerCallback compilerCallback = new CompilerCallback(module, javaFile);
         CompilerManager.getInstance(p).compile(module, compilerCallback);
     }
 
@@ -69,52 +69,52 @@ public class GenerateAction extends AnAction {
      */
     private static class CompilerCallback implements CompileStatusNotification {
 
+        private final Module module;
         private final PsiJavaFile javaFile;
 
-        public CompilerCallback(PsiJavaFile file) {
+        public CompilerCallback(Module module, PsiJavaFile file) {
+            this.module = module;
             this.javaFile = file;
         }
 
         public void finished(boolean b, int i, int i2, CompileContext compileContext) {
-            VirtualFile[] outputDirectories = compileContext.getAllOutputDirectories();
-            if (outputDirectories != null && outputDirectories.length > 0) {
-                String compileDirPath = outputDirectories[0].getPath();
-                String compiledFilePath = getCompiledClassFilePath(compileDirPath);
+            VirtualFile outputDirectory = compileContext.getModuleOutputDirectory(module);
+            String compileDirPath = outputDirectory.getPath();
+            String compiledFilePath = getCompiledClassFilePath(compileDirPath);
 
-                String dexFile = compiledFilePath + DEX_EXTENSION;
-                // CLASS -> DEX
-                try {
-                    Class2DexHelper.dexClassFile(compiledFilePath, dexFile);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    return;
-                }
-
-                // DEX -> SMALI
-                String outputDir = getSourceRootFile(javaFile).getPath();
-                try {
-                    Dex2SmaliHelper.disassembleDexFile(dexFile, outputDir);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    return;
-                }
-
-                // we've created the smali file in our source file's directory
-                // refresh directory synchronously to let IDEA detect the file
-                javaFile.getVirtualFile().getParent().refresh(false, false);
-
-                // get a VirtualFile by the IO path
-                String smaliPath = javaFile.getVirtualFile().getPath().replace(JAVA_EXTENSION, SMALI_EXTENSION);
-                VirtualFile virtualDexFile = LocalFileSystem.getInstance().findFileByIoFile(new File(smaliPath));
-                if (virtualDexFile == null) {
-                    // create smali file failed
-                    return;
-                }
-
-                // use the VirtualFile to show the smali file in IDEA editor
-                OpenFileDescriptor openFileDescriptor = new OpenFileDescriptor(javaFile.getProject(), virtualDexFile);
-                openFileDescriptor.navigate(true);
+            String dexFile = compiledFilePath + DEX_EXTENSION;
+            // CLASS -> DEX
+            try {
+                Class2DexHelper.dexClassFile(compiledFilePath, dexFile);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
             }
+
+            // DEX -> SMALI
+            String outputDir = getSourceRootFile(javaFile).getPath();
+            try {
+                Dex2SmaliHelper.disassembleDexFile(dexFile, outputDir);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+
+            // we've created the smali file in our source file's directory
+            // refresh directory synchronously to let IDEA detect the file
+            javaFile.getVirtualFile().getParent().refresh(false, false);
+
+            // get a VirtualFile by the IO path
+            String smaliPath = javaFile.getVirtualFile().getPath().replace(JAVA_EXTENSION, SMALI_EXTENSION);
+            VirtualFile virtualDexFile = LocalFileSystem.getInstance().findFileByIoFile(new File(smaliPath));
+            if (virtualDexFile == null) {
+                // create smali file failed
+                return;
+            }
+
+            // use the VirtualFile to show the smali file in IDEA editor
+            OpenFileDescriptor openFileDescriptor = new OpenFileDescriptor(javaFile.getProject(), virtualDexFile);
+            openFileDescriptor.navigate(true);
         }
 
         private String getCompiledClassFilePath(String dirPath) {
