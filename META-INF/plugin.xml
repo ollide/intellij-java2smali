@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>org.ollide.java2smali</id>
   <name>java2smali</name>
-  <version>1.1</version>
+  <version>1.2</version>
   <vendor email="hg.otothel@gmail.com" url="https://github.com/ollide">ollide</vendor>
 
   <description><![CDATA[
@@ -9,6 +9,9 @@
       ]]></description>
 
   <change-notes><![CDATA[
+      <b>version 1.2</b><br>
+      fixed NoSuchMethodError on new IntelliJ versions<br>
+      updated dx.jar (Android build-tools 21.1.2)<br>
       <b>version 1.1</b><br>
       added Java module dependency in plugin.xml<br>
       updated dx.jar (Android build-tools 20.0.0)<br>
