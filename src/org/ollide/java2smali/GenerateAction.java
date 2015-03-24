@@ -3,22 +3,18 @@ package org.ollide.java2smali;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.LangDataKeys;
-import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.compiler.CompileContext;
 import com.intellij.openapi.compiler.CompileStatusNotification;
 import com.intellij.openapi.compiler.CompilerManager;
-import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.fileEditor.OpenFileDescriptor;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.roots.ProjectRootManager;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.PsiClass;
-import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiJavaFile;
-import com.intellij.psi.util.PsiTreeUtil;
+import com.intellij.psi.PsiManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,33 +27,36 @@ public class GenerateAction extends AnAction {
     private static final String SMALI_EXTENSION = ".smali";
 
     public void actionPerformed(AnActionEvent e) {
-        PsiJavaFile javaFile = (PsiJavaFile) getPsiClassFromContext(e).getContainingFile();
+        VirtualFile vFile = getVirtualFileFromContext(e);
 
         Project p = e.getProject();
-        Module module = ProjectRootManager.getInstance(p).getFileIndex().getModuleForFile(javaFile.getVirtualFile());
+        Module module = ProjectRootManager.getInstance(p).getFileIndex().getModuleForFile(vFile);
+        PsiJavaFile javaFile = (PsiJavaFile) PsiManager.getInstance(p).findFile(vFile);
 
-        // Compile the javaFile's module
+        // Compile the vFile's module
         CompilerCallback compilerCallback = new CompilerCallback(module, javaFile);
         CompilerManager.getInstance(p).compile(module, compilerCallback);
     }
 
     @Override
     public void update(AnActionEvent e) {
-        PsiClass psiClass = getPsiClassFromContext(e);
-        e.getPresentation().setEnabled(psiClass != null && psiClass.getContainingFile() instanceof PsiJavaFile);
+        boolean enabled = false;
+
+        VirtualFile vFile = getVirtualFileFromContext(e);
+        if (vFile != null) {
+            String extension = vFile.getFileType().getDefaultExtension();
+            Module m = ProjectRootManager.getInstance(e.getProject()).getFileIndex().getModuleForFile(vFile);
+            enabled = "java".equals(extension) && m != null;
+        }
+        e.getPresentation().setEnabled(enabled);
     }
 
-    private PsiClass getPsiClassFromContext(AnActionEvent e) {
+    private VirtualFile getVirtualFileFromContext(AnActionEvent e) {
         PsiFile psiFile = e.getData(LangDataKeys.PSI_FILE);
-        Editor editor = e.getData(PlatformDataKeys.EDITOR);
-
-        if (psiFile == null || editor == null) {
+        if (psiFile == null) {
             return null;
         }
-
-        int offset = editor.getCaretModel().getOffset();
-        PsiElement elementAt = psiFile.findElementAt(offset);
-        return PsiTreeUtil.getParentOfType(elementAt, PsiClass.class);
+        return psiFile.getVirtualFile();
     }
 
     private static VirtualFile getSourceRootFile(PsiFile file) {
