@@ -12,7 +12,7 @@ Have you ever compiled and packaged a dummy Android application just to grab som
 3. wait while IDEA's indicating the compilation process
 4. the smali file is opened automatically in your editor
 
-![java2smali usage gif](img/plugin_usage.gif)
+<img src="img/plugin_usage2.gif" alt="java2smali usage gif" width="555">
 
 ### Installation ###
 
