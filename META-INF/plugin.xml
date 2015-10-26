@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>org.ollide.java2smali</id>
   <name>java2smali</name>
-  <version>1.3</version>
+  <version>1.4</version>
   <vendor email="hg.otothel@gmail.com" url="https://github.com/ollide">ollide</vendor>
 
   <description><![CDATA[
@@ -9,6 +9,9 @@
       ]]></description>
 
   <change-notes><![CDATA[
+      <b>version 1.4</b><br>
+      all inner classes, including anonymous, are now converted to smali<br>
+      updated baksmali jar to version 2.1.0<br>
       <b>version 1.3</b><br>
       disabled plugin for Java files outside of a module<br>
       improved file type detection (ignore caret position)<br>
