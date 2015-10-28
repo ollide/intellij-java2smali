@@ -121,7 +121,7 @@ public class GenerateAction extends AnAction {
             VirtualFile outDir = context.getModuleOutputDirectory(module);
 
             PsiClass[] classes = javaFile.getClasses();
-            Set<String> classNames = new HashSet<>(classes.length);
+            Set<String> classNames = new HashSet<String>(classes.length);
             for (PsiClass c : classes) {
                 classNames.add(c.getName());
             }
@@ -129,10 +129,10 @@ public class GenerateAction extends AnAction {
             String pkg = javaFile.getPackageName().replace('.', '/');
 
             List<VirtualFile> compiledAsList = Arrays.asList(outDir.findFileByRelativePath(pkg).getChildren());
-            List<VirtualFile> compiledChildren = new LinkedList<>(compiledAsList);
+            List<VirtualFile> compiledChildren = new LinkedList<VirtualFile>(compiledAsList);
 
             List<VirtualFile> sourceAsList = Arrays.asList(javaFile.getVirtualFile().getParent().getChildren());
-            List<VirtualFile> sourceChildren = new LinkedList<>(sourceAsList);
+            List<VirtualFile> sourceChildren = new LinkedList<VirtualFile>(sourceAsList);
 
             for (Iterator<VirtualFile> iterCompiled = compiledChildren.iterator(); iterCompiled.hasNext(); ) {
                 VirtualFile f = iterCompiled.next();
