@@ -19,7 +19,7 @@ public class Dex2SmaliHelper {
      * @throws IOException
      */
     public static void disassembleDexFile(String dexFilePath, String outputDir) throws IOException {
-        DexBackedDexFile dexBackedDexFile = DexFileFactory.loadDexFile(new File(dexFilePath), 19);
+        DexBackedDexFile dexBackedDexFile = DexFileFactory.loadDexFile(new File(dexFilePath), 19, false);
         baksmaliOptions options = new baksmaliOptions();
         options.outputDirectory = outputDir;
 
