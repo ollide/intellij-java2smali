@@ -5,13 +5,16 @@
   <vendor email="hg.otothel@gmail.com" url="https://github.com/ollide">ollide</vendor>
 
   <description><![CDATA[
-      Simple plugin to easily compile a Java file to smali.
+      Simple plugin to easily compile Java & Kotlin files to smali.
       ]]></description>
 
   <change-notes><![CDATA[
       <b>version 1.4</b><br>
+      initial support for kotlin files<br>
       all inner classes, including anonymous, are now converted to smali<br>
+      fix: dex file was accidentally placed in the IDE's bin directory<br>
       updated baksmali jar to version 2.1.0<br>
+      rewrote entire plugin in kotlin<br>
       <b>version 1.3</b><br>
       disabled plugin for Java files outside of a module<br>
       improved file type detection (ignore caret position)<br>
@@ -41,7 +44,7 @@
 
   <actions>
       <action id="generateSmaliCode" class="org.ollide.java2smali.GenerateAction" text="Compile to smali"
-              description="Creates and shows a smali version of this Java file">
+              description="Creates and shows a smali version of this file">
           <add-to-group group-id="BuildMenu" anchor="after" relative-to-action="Compile"/>
       </action>
   </actions>
