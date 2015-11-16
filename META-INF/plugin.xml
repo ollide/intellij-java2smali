@@ -28,7 +28,7 @@
   </change-notes>
 
   <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
-  <idea-version since-build="133"/> <!-- IDEA 13 -->
+  <idea-version since-build="135"/> <!-- IDEA 13.1 -->
   <depends>com.intellij.modules.java</depends>
 
   <application-components>
