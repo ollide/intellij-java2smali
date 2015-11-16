@@ -1,7 +1,7 @@
 intellij-java2smali
 ===================
 
-Simple plugin for IntelliJ IDEA &amp; Android Studio to easily compile a Java file to smali.
+Simple plugin for IntelliJ IDEA &amp; Android Studio to easily compile Java & Kotlin files to smali.
 
 Have you ever compiled and packaged a dummy Android application just to grab some Java sources in smali? Stop that! Transforming Java to smali just got easier.
 
