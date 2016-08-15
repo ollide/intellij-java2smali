@@ -21,13 +21,13 @@ class CompilerCallback(val module: Module, val file: PsiClassOwner) : CompileSta
     override fun finished(aborted: Boolean, errors: Int, warnings: Int, compileContext: CompileContext) {
         if (errors > 0) return
 
-        val fileName = file.virtualFile.nameWithoutExtension;
+        val fileName = file.virtualFile.nameWithoutExtension
 
         var outputDirectory = compileContext.getModuleOutputDirectory(module)
-        val pkg = file.packageName.replace('.', '/');
-        outputDirectory = outputDirectory?.findFileByRelativePath(pkg);
+        val pkg = file.packageName.replace('.', '/')
+        outputDirectory = outputDirectory?.findFileByRelativePath(pkg)
 
-        val children = outputDirectory?.children ?: return;
+        val children = outputDirectory?.children ?: return
         val compiledPaths = children.filter {
             (it.nameWithoutExtension == fileName || it.nameWithoutExtension.startsWith(fileName + '$'))
                     && it.extension == CLASS
@@ -35,7 +35,7 @@ class CompilerCallback(val module: Module, val file: PsiClassOwner) : CompileSta
             it.path
         }.toTypedArray()
 
-        var dexFile = outputDirectory!!.path;
+        var dexFile = outputDirectory!!.path
         if (!dexFile.endsWith('/')) dexFile += '/'
         dexFile += fileName + DEX_EXTENSION
 
