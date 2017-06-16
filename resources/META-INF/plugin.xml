@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>org.ollide.java2smali</id>
   <name>java2smali</name>
-  <version>1.5</version>
+  <version>1.6-SNAPSHOT</version>
   <vendor email="hg.otothel@gmail.com" url="https://github.com/ollide">ollide</vendor>
 
   <description><![CDATA[
