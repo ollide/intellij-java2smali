@@ -1,9 +1,10 @@
 package org.ollide.java2smali
 
-import org.jf.baksmali.baksmali
-import org.jf.baksmali.baksmaliOptions
-import org.jf.dexlib2.DexFileFactory
 
+import org.jf.baksmali.Baksmali
+import org.jf.baksmali.BaksmaliOptions
+import org.jf.dexlib2.DexFileFactory
+import org.jf.dexlib2.Opcodes
 import java.io.File
 import java.io.IOException
 
@@ -11,7 +12,7 @@ object Dex2SmaliHelper {
 
     /**
      * Uses baksmali, an disassembler for Android's dex format.
-     * Source code and more information: https://bitbucket.org/JesusFreke/smali/overview
+     * Source code and more information: https://github.com/JesusFreke/smali
      *
      * @param dexFilePath
      * @param outputDir
@@ -19,17 +20,11 @@ object Dex2SmaliHelper {
      */
     @Throws(IOException::class)
     fun disassembleDexFile(dexFilePath: String, outputDir: String) {
-        val dexBackedDexFile = DexFileFactory.loadDexFile(File(dexFilePath), 19, false)
-        val options = baksmaliOptions()
-        options.outputDirectory = outputDir
+        val opCodes = Opcodes.getDefault()
+        val dexBackedDexFile = DexFileFactory.loadDexFile(dexFilePath, opCodes)
 
-        // default value -1 will lead to an exception
-        // this setup is copied from Baksmali project
-        options.jobs = Runtime.getRuntime().availableProcessors()
-        if (options.jobs > 6) {
-            options.jobs = 6
-        }
-
-        baksmali.disassembleDexFile(dexBackedDexFile, options)
+        val options = BaksmaliOptions()
+        options.apiLevel = opCodes.api
+        Baksmali.disassembleDexFile(dexBackedDexFile, File(outputDir), 6, options)
     }
 }
