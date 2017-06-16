@@ -1,5 +1,6 @@
 package org.ollide.java2smali
 
+import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.compiler.CompileContext
 import com.intellij.openapi.compiler.CompileStatusNotification
 import com.intellij.openapi.fileEditor.OpenFileDescriptor
@@ -35,7 +36,7 @@ class CompilerCallback(val module: Module, val file: PsiClassOwner) : CompileSta
             it.path
         }.toTypedArray()
 
-        var dexFile = outputDirectory!!.path
+        var dexFile = outputDirectory.path
         if (!dexFile.endsWith('/')) dexFile += '/'
         dexFile += fileName + DEX_EXTENSION
 
@@ -49,16 +50,15 @@ class CompilerCallback(val module: Module, val file: PsiClassOwner) : CompileSta
 
         // DEX -> SMALI
         val outputDir = getSourceRootFile(file).path
-        try {
+        WriteCommandAction.runWriteCommandAction(file.project, {
             Dex2SmaliHelper.disassembleDexFile(dexFile, outputDir)
-        } catch (e: IOException) {
-            e.printStackTrace()
-            return
-        }
 
-        // we've created the smali file in our source file's directory
-        // refresh directory synchronously to let IDEA detect the file
-        file.virtualFile.parent.refresh(false, false)
+            // we've created the smali file(s) in our source file's directory
+            // refresh directory synchronously and access children to let IDEA detect the file(s)
+            val parent = file.virtualFile.parent
+            parent.refresh(false, false)
+            parent.children
+        })
 
         // get a VirtualFile by the IO path
         val smaliPath = file.virtualFile.path.substringBeforeLast('.') + SMALI_EXTENSION
