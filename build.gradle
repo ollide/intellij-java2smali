@@ -1,21 +1,48 @@
 buildscript {
+    ext {
+        kotlinVersion = '1.1.2-5'
+    }
+
     repositories {
-        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
 }
 
 plugins {
-    id "org.jetbrains.intellij" version "0.1.10"
+    id 'org.jetbrains.intellij' version '0.2.12'
 }
 
-apply plugin: 'idea'
 apply plugin: 'org.jetbrains.intellij'
 apply plugin: 'java'
+apply plugin: 'kotlin'
 
-intellij {
-    version 'IC-143.2370.31' // IntelliJ IDEA 2016.3 dependency; for a full list of IntelliJ IDEA releases please see https://www.jetbrains.com/intellij-repository/releases
-    pluginName 'java2smali'
+repositories {
+    jcenter()
 }
 
-group 'org.ollide'
-version '1.6-SNAPSHOT'
+dependencies {
+    compile fileTree(dir: 'lib', include: '*.jar')
+
+    compile "org.jetbrains.kotlin:kotlin-runtime:$kotlinVersion"
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+
+    compile 'org.smali:baksmali:2.2.1'
+}
+
+intellij {
+    version = 'IC-143.2370.31'
+
+    downloadSources false
+    updateSinceUntilBuild false
+
+    pluginName 'java2smali'
+
+    sandboxDirectory = project.rootDir.canonicalPath + '/.sandbox'
+
+}
+
+version = '1.6-SNAPSHOT'

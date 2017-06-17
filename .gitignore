@@ -1,5 +1,5 @@
 .idea/
-out/
+.sandbox
 *.iml
 
 # Created by .ignore support plugin (hsz.mobi)
