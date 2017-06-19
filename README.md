@@ -1,6 +1,9 @@
 intellij-java2smali
 ===================
 
+<a href="https://travis-ci.org/ollide/intellij-java2smali" target="_blank">
+<img src="https://travis-ci.org/ollide/intellij-java2smali.svg?branch=develop" /></a> 
+
 Simple plugin for IntelliJ IDEA &amp; Android Studio to easily compile Java & Kotlin files to smali.
 
 Have you ever compiled and packaged a dummy Android application just to grab some Java sources in smali? Stop that! Transforming Java to smali just got easier.
