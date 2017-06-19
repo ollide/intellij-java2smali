@@ -1,0 +1,8 @@
+version: "{branch}-{build}"
+
+build_script:
+  - gradlew.bat assemble
+
+artifacts:
+  - path: 'build\distributions\java2smali-*.zip'
+    name: Java2Smali Plugin
