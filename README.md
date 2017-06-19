@@ -1,8 +1,8 @@
 intellij-java2smali
 ===================
 
-<a href="https://travis-ci.org/ollide/intellij-java2smali" target="_blank">
-<img src="https://travis-ci.org/ollide/intellij-java2smali.svg?branch=develop" /></a> 
+[![Build Status](https://travis-ci.org/ollide/intellij-java2smali.svg?branch=develop)](https://travis-ci.org/ollide/intellij-java2smali)
+[![Quality Gate status](https://sonarcloud.io/api/badges/gate?key=org.ollide:intellij-java2smali)](https://sonarcloud.io/dashboard?id=org.ollide%3Aintellij-java2smali)
 
 Simple plugin for IntelliJ IDEA &amp; Android Studio to easily compile Java & Kotlin files to smali.
 
