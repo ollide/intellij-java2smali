@@ -1,19 +1,12 @@
 buildscript {
-    ext {
-        kotlinVersion = '1.1.2-5'
-    }
-
     repositories {
         jcenter()
-    }
-
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
 }
 
 plugins {
     id 'org.jetbrains.intellij' version '0.2.13'
+    id 'org.jetbrains.kotlin.jvm' version '1.1.2'
     id 'org.sonarqube' version '2.5'
 }
 
@@ -28,8 +21,8 @@ repositories {
 dependencies {
     compile fileTree(dir: 'lib', include: '*.jar')
 
-    compile "org.jetbrains.kotlin:kotlin-runtime:$kotlinVersion"
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    compile 'org.jetbrains.kotlin:kotlin-runtime'
+    compile 'org.jetbrains.kotlin:kotlin-stdlib'
 
     compile 'org.smali:baksmali:2.2.1'
 }
@@ -43,6 +36,13 @@ intellij {
     pluginName 'java2smali'
 
     sandboxDirectory = project.rootDir.canonicalPath + '/.sandbox'
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = '1.6'
+        apiVersion = '1.0'
+    }
 }
 
 sonarqube {
