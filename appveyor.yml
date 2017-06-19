@@ -6,3 +6,6 @@ build_script:
 artifacts:
   - path: 'build\distributions\java2smali-*.zip'
     name: Java2Smali Plugin
+
+cache:
+  - C:\Users\appveyor\.gradle
