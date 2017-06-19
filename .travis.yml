@@ -12,3 +12,16 @@ cache:
 
 script:
   - ./gradlew --stacktrace --info build sonarqube
+
+before_deploy:
+  - ./gradlew publishPlugin
+
+deploy:
+  provider: releases
+  api_key: $GITHUB_OAUTH_TOKEN
+  file_glob: true
+  file: build/distributions/java2smali-*.zip
+  skip_cleanup: true
+  on:
+    repo: ollide/intellij-java2smali
+    tags: true

@@ -36,6 +36,11 @@ intellij {
     pluginName 'java2smali'
 
     sandboxDirectory = project.rootDir.canonicalPath + '/.sandbox'
+
+    publishPlugin {
+        username 'ollide'
+        password JETBRAINS_PASSWORD
+    }
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
