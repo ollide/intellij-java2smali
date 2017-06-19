@@ -14,6 +14,7 @@ buildscript {
 
 plugins {
     id 'org.jetbrains.intellij' version '0.2.12'
+    id 'org.sonarqube' version '2.5'
 }
 
 apply plugin: 'org.jetbrains.intellij'
@@ -42,7 +43,17 @@ intellij {
     pluginName 'java2smali'
 
     sandboxDirectory = project.rootDir.canonicalPath + '/.sandbox'
+}
 
+sonarqube {
+    properties {
+        property "sonar.projectName", "intellij-java2smali"
+        property "sonar.projectKey", "org.ollide:intellij-java2smali"
+        property "sonar.sources", "src"
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.organization", "ollide-github"
+        property "sonar.login", SONAR_TOKEN
+    }
 }
 
 version = '1.6-SNAPSHOT'

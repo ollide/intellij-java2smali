@@ -11,4 +11,4 @@ cache:
     - $HOME/.gradle/wrapper/
 
 script:
-  - ./gradlew --stacktrace --info build
+  - ./gradlew --stacktrace --info build sonarqube
