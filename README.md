@@ -36,7 +36,7 @@ Build the plugin with Gradle:
 
 The plugin can be found in `/build/distributions/java2smali-$VERSION.zip`.
 
-### Third-Party Libraries &amp; Credits ###
+## Third-Party Libraries &amp; Credits ##
 
 - [dx](http://developer.android.com/tools/help/index.html#tools-platform) from the Android platform-tools is used to create a .dex version of the compiled Java (.class) file
 - [baksmali](https://github.com/JesusFreke/smali) –
