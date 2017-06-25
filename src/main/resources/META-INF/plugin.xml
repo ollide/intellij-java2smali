@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>org.ollide.java2smali</id>
   <name>java2smali</name>
-  <version>1.5</version>
+  <version>patched</version>
   <vendor email="hg.otothel@gmail.com" url="https://github.com/ollide">ollide</vendor>
 
   <description><![CDATA[
@@ -9,6 +9,12 @@
       ]]></description>
 
   <change-notes><![CDATA[
+      <b>version 1.6</b><br>
+      fixed 'Write access is allowed from write-safe contexts only' error<br>
+      minimum IDEA version is now 143 (IntelliJ IDEA 15)<br>
+      updated baksmali.jar to version 2.2.1<br>
+      build plugin with Gradle (4.0) & gradle-intellij-plugin<br>
+      continuous integration with Travis CI and AppVeyor
       <b>version 1.5</b><br>
       kotlin runtime 1.0.3<br>
       updated baksmali.jar to version 2.1.3<br>
@@ -35,7 +41,7 @@
   </change-notes>
 
   <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
-  <idea-version since-build="135"/> <!-- IDEA 13.1 -->
+  <idea-version since-build="143"/> <!-- IDEA 15 -->
   <depends>com.intellij.modules.java</depends>
 
   <application-components>
