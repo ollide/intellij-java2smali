@@ -27,6 +27,7 @@ class CompilerCallback(val module: Module, val file: PsiClassOwner) : CompileSta
         var outputDirectory = compileContext.getModuleOutputDirectory(module)
         val pkg = file.packageName.replace('.', '/')
         outputDirectory = outputDirectory?.findFileByRelativePath(pkg)
+        outputDirectory?.refresh(false, false)
 
         val children = outputDirectory?.children ?: return
         val compiledPaths = children.filter {
