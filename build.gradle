@@ -42,8 +42,7 @@ intellij {
     sandboxDirectory = project.rootDir.canonicalPath + '/.sandbox'
 
     publishPlugin {
-        username 'ollide'
-        password JETBRAINS_PASSWORD
+        token = System.getenv("ORG_GRADLE_PROJECT_intellijPublishToken")
     }
 
     plugins = ['java']
@@ -68,4 +67,4 @@ sonarqube {
     }
 }
 
-version = '2.0.0'
+version = '2.0.1'
