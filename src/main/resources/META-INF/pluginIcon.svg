@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+    <defs>
+        <linearGradient id="kotlin_file-a" x1="-16.836%" x2="76.219%" y1="91.94%" y2="-1.116%">
+            <stop offset="10.75%" stop-color="#C757BC"/>
+            <stop offset="21.38%" stop-color="#D0609A"/>
+            <stop offset="42.54%" stop-color="#E1725C"/>
+            <stop offset="60.48%" stop-color="#EE7E2F"/>
+            <stop offset="74.3%" stop-color="#F58613"/>
+            <stop offset="82.32%" stop-color="#F88909"/>
+        </linearGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g fill="none" fill-rule="evenodd" transform="translate(20 5)">
+            <polygon fill="#9AA7B0" fill-opacity=".8" points="7 1 3 5 7 5"/>
+            <path fill="#9AA7B0" fill-opacity=".8" d="M13,8 L8,8 L8,15 L3,15 L3,6 L8,6 L8,1 L13,1 L13,8 Z"/>
+            <g transform="translate(9 9)">
+                <polygon fill="#0EAEFF" fill-rule="nonzero" points="0 7 3.512 3.488 7 7"/>
+                <polygon fill="#0EAEFF" fill-rule="nonzero" points="0 0 3.512 0 0 3.792"/>
+                <polygon fill="url(#kotlin_file-a)" fill-rule="nonzero" points="3.512 0 0 3.698 0 7 3.512 3.488 7 0"/>
+            </g>
+        </g>
+
+        <g fill="none" fill-rule="evenodd" transform="translate(3 5)">
+            <polygon fill="#40B6E0" fill-opacity=".7" points="1 16 14 16 14 9 1 9"/>
+            <polygon fill="#9AA7B0" fill-opacity=".8" points="7 1 3 5 7 5"/>
+            <polygon fill="#9AA7B0" fill-opacity=".8" points="8 1 8 6 3 6 3 8 13 8 13 1"/>
+            <path fill="#231F20" fill-opacity=".7" d="M1.39509277,3.58770752 C1.62440186,3.83789062 1.83782861,4 2.28682861,4 C2.81318359,4 3,3.58770752 3,3.29760742 L3,0 L4,0 L4,3.58770752 C4,4.31964111 3.32670898,5 2.45,5 C1.629,5 1.15,4.76264111 0.8,4.31964111 L1.39509277,3.58770752 Z" transform="translate(2 10)"/>
+        </g>
+
+        <g>
+            <rect x="4" y="23" width="32" height="11" fill-opacity=".7" fill="#C41E3A"/>
+            <text xml:space="preserve" text-anchor="start" font-family="Euphoria, sans-serif" font-size="10" id="svg_1" y="32" x="6" opacity="0.8" stroke-width="0" stroke="#000" fill="#231F20">.smali</text>
+        </g>
+    </g>
+</svg>

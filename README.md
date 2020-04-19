@@ -3,7 +3,7 @@ intellij-java2smali
 
 [![Travis Build Status](https://travis-ci.org/ollide/intellij-java2smali.svg?branch=develop)](https://travis-ci.org/ollide/intellij-java2smali)
 [![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/htqnq07bveqh8elv/branch/develop?svg=true)](https://ci.appveyor.com/project/ollide/intellij-java2smali)
-[![Quality Gate status](https://sonarcloud.io/api/badges/gate?key=org.ollide:intellij-java2smali)](https://sonarcloud.io/dashboard?id=org.ollide%3Aintellij-java2smali)
+[![Quality Gate status](https://sonarcloud.io/api/project_badges/measure?project=org.ollide%3Aintellij-java2smali&metric=alert_status)](https://sonarcloud.io/dashboard?id=org.ollide%3Aintellij-java2smali)
 
 Simple plugin for IntelliJ IDEA &amp; Android Studio to easily compile Java & Kotlin files to smali.
 
@@ -36,6 +36,14 @@ Build the plugin with Gradle:
     ./gradlew buildPlugin
 
 The plugin can be found in `/build/distributions/java2smali-$VERSION.zip`.
+
+## Troubleshooting ##
+
+To enable debug logging of the plugin, select `Help -> Diagnostic Tools -> Debug Log Settings…`
+and add the following line:
+```
+#org.ollide.java2smali
+```
 
 ## Third-Party Libraries &amp; Credits ##
 
