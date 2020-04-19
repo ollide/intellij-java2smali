@@ -37,6 +37,14 @@ Build the plugin with Gradle:
 
 The plugin can be found in `/build/distributions/java2smali-$VERSION.zip`.
 
+## Troubleshooting ##
+
+To enable debug logging of the plugin, select `Help -> Diagnostic Tools -> Debug Log Settings…`
+and add the following line:
+```
+#org.ollide.java2smali
+```
+
 ## Third-Party Libraries &amp; Credits ##
 
 - [dx](http://developer.android.com/tools/help/index.html#tools-platform) from the Android platform-tools is used to create a .dex version of the compiled Java (.class) file
