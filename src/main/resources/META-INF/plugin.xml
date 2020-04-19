@@ -1,4 +1,4 @@
-<idea-plugin version="2">
+<idea-plugin>
   <id>org.ollide.java2smali</id>
   <name>java2smali</name>
   <version>patched</version>
@@ -9,7 +9,10 @@
       ]]></description>
 
   <change-notes><![CDATA[
-      <b>version 1.7-SNAPSHOT</b><br>
+      <b>version 2.0.0-SNAPSHOT</b><br>
+      Rewrote plugin to be more resilient across build setups (Gradle, Maven, Android)<br>
+      Support for IntelliJ IDEA 2020.1 / Android Studio 3.6.3<br>
+      New minimum build version: 191 (2019.1)<br>
       <br>
       <b>version 1.6</b><br>
       fixed 'Write access is allowed from write-safe contexts only' error<br>
@@ -49,7 +52,7 @@
   </change-notes>
 
   <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
-  <idea-version since-build="143"/> <!-- IDEA 15 -->
+  <idea-version since-build="191"/> <!-- IDEA 2019.1 -->
   <depends>com.intellij.modules.java</depends>
 
   <application-components>
