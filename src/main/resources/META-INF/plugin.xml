@@ -9,7 +9,7 @@
       ]]></description>
 
   <change-notes><![CDATA[
-      <b>version 2.0.0-SNAPSHOT</b><br>
+      <b>version 2.0.0</b><br>
       Rewrote plugin to be more resilient across build setups (Gradle, Maven, Android)<br>
       Support for IntelliJ IDEA 2020.1 / Android Studio 3.6.3<br>
       New minimum build version: 191 (2019.1)<br>
