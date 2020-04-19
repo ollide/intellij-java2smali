@@ -61,7 +61,7 @@
   </project-components>
 
   <actions>
-      <action id="generateSmaliCode" class="org.ollide.java2smali.GenerateAction" text="Compile to smali"
+      <action id="generateSmaliCode" class="org.ollide.java2smali.GenerateAction" text="Compile to Smali"
               description="Creates and shows a smali version of this file">
           <add-to-group group-id="BuildMenu" anchor="after" relative-to-action="Compile"/>
       </action>
