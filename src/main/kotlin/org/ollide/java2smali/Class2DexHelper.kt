@@ -23,6 +23,7 @@ object Class2DexHelper {
         arguments.outName = outputDexPath
         arguments.strictNameCheck = false
         arguments.fileNames = inputClassFilePaths
+        arguments.minSdkVersion = 28
 
         return try {
             val returnCode = Main(dxContext).runDx(arguments)

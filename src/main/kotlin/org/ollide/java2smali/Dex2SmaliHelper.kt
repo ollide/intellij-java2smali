@@ -20,7 +20,7 @@ object Dex2SmaliHelper {
      */
     @Throws(IOException::class)
     fun disassembleDexFile(dexFilePath: String, outputDir: String) {
-        val opCodes = Opcodes.getDefault()
+        val opCodes = Opcodes.forApi(28)
         val dexBackedDexFile = DexFileFactory.loadDexFile(dexFilePath, opCodes)
 
         val options = BaksmaliOptions()
