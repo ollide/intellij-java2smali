@@ -16,7 +16,6 @@ import com.intellij.util.SmartList
 import com.intellij.util.containers.OrderedSet
 import com.intellij.util.io.URLUtil
 import java.io.File
-import java.io.IOException
 import java.nio.file.Paths
 
 class DexCompiler(private val vFile: VirtualFile, private val project: Project, private val module: Module) {
@@ -59,7 +58,10 @@ class DexCompiler(private val vFile: VirtualFile, private val project: Project, 
 
         // CLASS -> DEX
         val targetFiles = getClassFiles(fileOutputDirectory, fileName)
-        compileDexFile(targetFiles, dexFilePath)
+        val successfulDex = Class2DexHelper.dexClassFile(targetFiles, dexFilePath)
+        if (!successfulDex) {
+            return
+        }
 
         // DEX -> SMALI
         val outputDir = getSourceRootFile().path
@@ -142,15 +144,6 @@ class DexCompiler(private val vFile: VirtualFile, private val project: Project, 
             }
         }
         return OrderedSet(outputPaths)
-    }
-
-    private fun compileDexFile(compiledPaths: Array<String>, dexFile: String) {
-        try {
-            Class2DexHelper.dexClassFile(compiledPaths, dexFile)
-        } catch (e: IOException) {
-            e.printStackTrace()
-            return
-        }
     }
 
     private fun getSourceRootFile(): VirtualFile {
