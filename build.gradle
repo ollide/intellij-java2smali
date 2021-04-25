@@ -28,7 +28,7 @@ dependencies {
 
     compile 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
 
-    compile 'org.smali:baksmali:2.4.0'
+    compile 'org.smali:baksmali:2.5.2'
 }
 
 intellij {
