@@ -54,19 +54,21 @@ class DexCompiler(private val vFile: VirtualFile, private val project: Project, 
         fileOutputDirectory.refresh(false, false)
 
         val fileName = vFile.nameWithoutExtension
-        val dexFilePath = Paths.get(fileOutputDirectory.path, fileName + DEX_EXTENSION).toString()
+        val dexFilePath = Paths.get(fileOutputDirectory.path)
 
         // CLASS -> DEX
         val targetFiles = getClassFiles(fileOutputDirectory, fileName)
-        val successfulDex = Class2DexHelper.dexClassFile(targetFiles, dexFilePath)
+        val successfulDex = D8Class2DexHelper.dexClassFile(targetFiles, dexFilePath)
         if (!successfulDex) {
             return
         }
 
+        val dexFile = dexFilePath.resolve("classes$DEX_EXTENSION").toString()
+
         // DEX -> SMALI
         val outputDir = getSourceRootFile().path
         WriteCommandAction.runWriteCommandAction(project) {
-            Dex2SmaliHelper.disassembleDexFile(dexFilePath, outputDir)
+            Dex2SmaliHelper.disassembleDexFile(dexFile, outputDir)
 
             // we've created the smali file(s) in our source file's directory
             // refresh directory synchronously and access children to let IDEA detect the file(s)
